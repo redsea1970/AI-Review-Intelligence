@@ -1,0 +1,13 @@
+# Виртуальное окружение
+.venv/
+venv/
+
+# Кэш Python
+__pycache__/
+*.pyc
+
+# Настройки VS Code (по желанию)
+.vscode/
+
+# Streamlit
+.streamlit/secrets.toml
