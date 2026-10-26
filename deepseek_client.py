@@ -139,10 +139,17 @@ def classify_with_deepseek(text: str) -> dict[str, str]:
 
     if response.status_code == 401:
         raise DeepSeekError("DeepSeek API отклонил ключ (401). Проверьте DEEPSEEK_API_KEY.")
+    if response.status_code == 402:
+        raise DeepSeekError(
+            "DeepSeek API: требуется оплата (402). Проверьте баланс в кабинете DeepSeek."
+        )
+    if response.status_code == 403:
+        raise DeepSeekError(
+            "DeepSeek API: доступ запрещён (403). Проверьте права ключа и условия аккаунта."
+        )
     if response.status_code == 429:
         raise DeepSeekError("DeepSeek API: превышен лимит запросов (429).")
     if response.status_code >= 400:
-        # Не показываем тело ответа целиком, чтобы случайно не засветить детали.
         raise DeepSeekError(
             f"DeepSeek API вернул ошибку HTTP {response.status_code}."
         )
